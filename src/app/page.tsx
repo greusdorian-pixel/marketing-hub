@@ -3,7 +3,7 @@
 
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, X, Layers, Target, Terminal, Zap } from "lucide-react";
+import { Search, X, Layers, Target, Terminal, Zap, Sparkles, Brain, Rocket, TrendingUp, Users, CheckCircle2 } from "lucide-react";
 import Sidebar from "@/components/Sidebar";
 import SkillCard from "@/components/SkillCard";
 import skillsData from "@/data/skills.json";
@@ -30,23 +30,30 @@ export default function Home() {
     setIsGenerating(true);
     setGenerationResult(null);
 
-    // Simulate analysis delay
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    // Simulate deep analysis logic
+    await new Promise(resolve => setTimeout(resolve, 800)); // Initial scan
+    await new Promise(resolve => setTimeout(resolve, 1200)); // Strategy mapping
+    
+    // Keywords from user input to make it feel custom
+    const inputKeywords = userContext.toLowerCase().split(' ').filter(w => w.length > 3);
+    const contextTerm = inputKeywords[0] || "your specific niche";
 
     const result = {
-      summary: `Comprehensive ${skill.title} Strategy for: ${userContext}`,
+      score: Math.floor(Math.random() * 25) + 70, // 70-95
+      audience: `Primary focus: Users specifically looking for ${contextTerm}-related solutions.`,
+      angle: `The "Unique Value Proposition" should pivot on ${skill.core_principles[0].split(':')[0].trim()} applied to ${userContext}.`,
       roadmap: skill.core_principles.map((p, i) => {
         const [title, detail] = p.split(':');
         return {
           phase: `Phase ${i + 1}`,
           title: title.trim(),
-          action: detail?.trim() || "Implement industry standard best practices."
+          action: `Tailored for ${contextTerm}: ${detail?.trim() || "Deep integration of industry standards."}`
         };
       }),
-      nextSteps: [
-        "Audit current implementation based on these principles.",
-        "Set up baseline metrics for tracking success.",
-        "Execute Phase 1 implementation as a pilot test."
+      tactics: [
+        `Custom ${skill.title} landing page for "${contextTerm}" keywords.`,
+        `Automated follow-up sequence addressing "${userContext}" pain points.`,
+        `A/B Testing variables: Benefit-driven vs. Fear-of-missing-out copy.`
       ]
     };
     
@@ -122,16 +129,21 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => setSelectedSkill(null)}
+              onClick={() => {
+                setSelectedSkill(null);
+                setGenerationResult(null);
+                setUserContext("");
+              }}
               className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"
             />
             
             <motion.div
               layoutId={selectedSkill.id}
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              onClick={(e) => e.stopPropagation()}
+              initial={{ opacity: 0, scale: 0.9, y: 40 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-full max-w-3xl glass rounded-3xl overflow-hidden shadow-2xl"
+              exit={{ opacity: 0, scale: 0.9, y: 40 }}
+              className="relative w-full max-w-4xl glass rounded-[2.5rem] overflow-hidden shadow-[0_0_50px_-12px_rgba(59,130,246,0.5)] border-t border-white/10"
             >
               <button 
                 onClick={() => {
@@ -139,7 +151,7 @@ export default function Home() {
                   setGenerationResult(null);
                   setUserContext("");
                 }}
-                className="absolute top-6 right-6 p-2 rounded-full hover:bg-slate-800 transition-colors"
+                className="absolute top-6 right-6 p-2 rounded-full hover:bg-slate-800 transition-colors z-10"
               >
                 <X className="w-5 h-5 text-slate-400" />
               </button>
@@ -188,75 +200,123 @@ export default function Home() {
                     <p className="text-sm text-slate-400 mb-6">Applying {selectedSkill.title} strategy to your specific project context.</p>
                     
                     <div className="space-y-4">
-                      <input 
-                        className="w-full bg-slate-950 border border-slate-800 px-4 py-3 rounded-xl outline-none focus:border-blue-500 transition-colors text-slate-200"
-                        placeholder="Project or company description..."
+                      <textarea 
+                        className="w-full bg-slate-950 border border-slate-800 px-4 py-3 rounded-xl outline-none focus:border-blue-500 transition-colors text-slate-200 min-h-[100px] resize-none"
+                        placeholder="Project or company description... e.g. 'Artisan coffee shop for local delivery'"
                         value={userContext}
                         onChange={(e) => setUserContext(e.target.value)}
                       />
-                      <button 
-                        onClick={() => handleGenerate(selectedSkill)}
-                        disabled={!userContext.trim() || isGenerating}
-                        className="w-full bg-blue-600 hover:bg-blue-500 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-3 rounded-xl transition-all shadow-lg shadow-blue-600/20 flex items-center justify-center gap-2"
-                      >
-                        {isGenerating ? (
-                          <>
-                            <motion.div 
-                              animate={{ rotate: 360 }}
-                              transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
-                            >
-                              <Zap className="w-4 h-4" />
-                            </motion.div>
-                            Analyzing Context...
-                          </>
-                        ) : (
-                          "Generate Full Strategy"
-                        )}
-                      </button>
-
-                      {generationResult && (
-                        <motion.div 
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          className="mt-6 space-y-6"
+                      
+                      {isGenerating ? (
+                        <div className="flex flex-col items-center py-8 space-y-4">
+                          <motion.div 
+                            animate={{ 
+                              scale: [1, 1.2, 1],
+                              rotate: [0, 180, 360],
+                              filter: ["blur(0px)", "blur(4px)", "blur(0px)"]
+                            }}
+                            transition={{ repeat: Infinity, duration: 2 }}
+                            className="w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center border border-blue-500/50"
+                          >
+                            <Brain className="w-8 h-8 text-blue-400" />
+                          </motion.div>
+                          <div className="text-center">
+                            <p className="text-blue-400 font-bold animate-pulse">Consulting Marketing Engines...</p>
+                            <p className="text-[10px] text-slate-500 uppercase tracking-widest mt-1">Applying {selectedSkill.title} Framework</p>
+                          </div>
+                        </div>
+                      ) : (
+                        <button 
+                          onClick={() => handleGenerate(selectedSkill)}
+                          disabled={!userContext.trim()}
+                          className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 disabled:opacity-30 disabled:cursor-not-allowed text-white font-bold py-4 rounded-2xl transition-all shadow-xl shadow-blue-600/20 flex items-center justify-center gap-3 text-lg"
                         >
-                          <div className="p-6 bg-slate-950/50 border border-blue-500/30 rounded-2xl">
-                            <h5 className="text-blue-400 font-bold mb-4 flex items-center gap-2">
-                              <Zap className="w-4 h-4" /> Execution Roadmap
-                            </h5>
-                            
-                            <div className="space-y-4">
-                              {generationResult.roadmap.map((step: any, i: number) => (
-                                <div key={i} className="flex gap-4">
-                                  <div className="flex flex-col items-center">
-                                    <div className="w-2 h-2 rounded-full bg-blue-500 mt-2" />
-                                    {i !== generationResult.roadmap.length - 1 && (
-                                      <div className="w-px h-full bg-slate-800 my-1" />
-                                    )}
-                                  </div>
-                                  <div>
-                                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-tighter">{step.phase}</p>
-                                    <p className="text-sm font-bold text-slate-200">{step.title}</p>
-                                    <p className="text-xs text-slate-400 mt-1 leading-relaxed">{step.action}</p>
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-
-                          <div className="p-6 bg-blue-500/5 border border-blue-500/20 rounded-2xl">
-                            <h5 className="text-slate-200 font-bold mb-3 text-sm">Critical Next Steps</h5>
-                            <ul className="space-y-2">
-                              {generationResult.nextSteps.map((step: string, i: number) => (
-                                <li key={i} className="flex items-center gap-2 text-xs text-slate-400">
-                                  <div className="w-1 h-1 rounded-full bg-blue-400" />
-                                  {step}
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        </motion.div>
+                          <Sparkles className="w-5 h-5" /> Generate High-Impact Strategy
+                        </button>
                       )}
+
+                      <AnimatePresence>
+                        {generationResult && (
+                          <motion.div 
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            className="mt-8 space-y-6"
+                          >
+                            {/* Market Potential Score */}
+                            <div className="flex items-center gap-6 p-6 bg-slate-900/80 rounded-[2rem] border border-blue-500/30">
+                              <div className="relative w-20 h-20 flex items-center justify-center">
+                                <svg className="w-full h-full transform -rotate-90">
+                                  <circle cx="40" cy="40" r="36" stroke="currentColor" strokeWidth="4" fill="transparent" className="text-slate-800" />
+                                  <circle cx="40" cy="40" r="36" stroke="currentColor" strokeWidth="4" fill="transparent" 
+                                    strokeDasharray={226}
+                                    strokeDashoffset={226 - (226 * generationResult.score) / 100}
+                                    className="text-blue-500 transition-all duration-1000"
+                                  />
+                                </svg>
+                                <span className="absolute font-bold text-xl">{generationResult.score}%</span>
+                              </div>
+                              <div>
+                                <h5 className="font-bold text-lg leading-tight uppercase tracking-tighter">Market Impact Score</h5>
+                                <p className="text-xs text-slate-400 max-w-xs">{selectedSkill.title} could boost your performance significantly.</p>
+                              </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                              <div className="p-5 bg-slate-900/50 rounded-2xl border border-slate-800">
+                                <p className="text-blue-400 font-bold mb-2 flex items-center gap-2 text-xs uppercase tracking-widest"><Users className="w-4 h-4" /> Audience Context</p>
+                                <p className="text-slate-300 italic">"{generationResult.audience}"</p>
+                              </div>
+                              <div className="p-5 bg-slate-900/50 rounded-2xl border border-slate-800">
+                                <p className="text-indigo-400 font-bold mb-2 flex items-center gap-2 text-xs uppercase tracking-widest"><Target className="w-4 h-4" /> Competitive Angle</p>
+                                <p className="text-slate-300 italic">"{generationResult.angle}"</p>
+                              </div>
+                            </div>
+
+                            <div className="p-8 bg-slate-950/50 border border-blue-500/10 rounded-[2rem] relative overflow-hidden">
+                              <div className="absolute top-0 right-0 p-8 opacity-5">
+                                <Rocket className="w-32 h-32 text-blue-500" />
+                              </div>
+
+                              <h5 className="text-blue-400 font-bold mb-6 flex items-center gap-2 text-sm uppercase tracking-widest">
+                                <TrendingUp className="w-4 h-4" /> Execution Roadmap
+                              </h5>
+                              
+                              <div className="space-y-6 relative ml-2">
+                                {generationResult.roadmap.map((step: any, i: number) => (
+                                  <div key={i} className="flex gap-6 group">
+                                    <div className="flex flex-col items-center">
+                                      <div className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-sm font-bold text-blue-500 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                                        {i + 1}
+                                      </div>
+                                      {i !== generationResult.roadmap.length - 1 && (
+                                        <div className="w-0.5 h-full bg-slate-800/50 my-2" />
+                                      )}
+                                    </div>
+                                    <div className="pb-4">
+                                      <p className="text-sm font-bold text-slate-100 group-hover:text-blue-400 transition-colors uppercase tracking-wider">{step.title}</p>
+                                      <p className="text-sm text-slate-400 mt-1 leading-relaxed max-w-xl">{step.action}</p>
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+
+                            <div className="p-6 bg-gradient-to-r from-blue-600/20 to-indigo-600/20 border border-blue-500/20 rounded-2xl">
+                              <h5 className="text-slate-200 font-bold mb-4 text-xs uppercase tracking-widest flex items-center gap-2">
+                                <Zap className="w-4 h-4 text-blue-400" /> Tactics Checklist
+                              </h5>
+                              <div className="grid gap-3">
+                                {generationResult.tactics.map((tactic: string, i: number) => (
+                                  <div key={i} className="flex items-center gap-3 text-xs text-slate-300 bg-black/20 p-3 rounded-xl border border-white/5">
+                                    <CheckCircle2 className="w-3 h-3 text-green-400" />
+                                    {tactic}
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
                   </section>
                 </div>
