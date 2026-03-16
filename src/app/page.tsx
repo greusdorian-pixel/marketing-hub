@@ -3,7 +3,7 @@
 
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, X, Layers, Target, Terminal } from "lucide-react";
+import { Search, X, Layers, Target, Terminal, Zap } from "lucide-react";
 import Sidebar from "@/components/Sidebar";
 import SkillCard from "@/components/SkillCard";
 import skillsData from "@/data/skills.json";
@@ -20,6 +20,19 @@ export default function Home() {
   const [activeCategory, setActiveCategory] = useState("All Skills");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedSkill, setSelectedSkill] = useState<Skill | null>(null);
+  const [userContext, setUserContext] = useState("");
+  const [generationResult, setGenerationResult] = useState<string | null>(null);
+
+  const handleGenerate = (skill: Skill) => {
+    if (!userContext.trim()) return;
+    
+    // Simulate generation logic based on skill principles
+    const result = `Using the ${skill.title} framework for "${userContext}":\n\n` + 
+      `Priority 1: ${skill.core_principles[0].split(':')[0]}\n` +
+      `Recommended Action: Focus on implementing ${skill.core_principles[0].split(':')[1] || "best practices"} to maximize immediate impact.`;
+    
+    setGenerationResult(result);
+  };
 
   const filteredSkills = useMemo(() => {
     return skillsData.filter((skill) => {
@@ -101,7 +114,11 @@ export default function Home() {
               className="relative w-full max-w-3xl glass rounded-3xl overflow-hidden shadow-2xl"
             >
               <button 
-                onClick={() => setSelectedSkill(null)}
+                onClick={() => {
+                  setSelectedSkill(null);
+                  setGenerationResult(null);
+                  setUserContext("");
+                }}
                 className="absolute top-6 right-6 p-2 rounded-full hover:bg-slate-800 transition-colors"
               >
                 <X className="w-5 h-5 text-slate-400" />
@@ -152,12 +169,33 @@ export default function Home() {
                     
                     <div className="space-y-4">
                       <input 
-                        className="w-full bg-slate-950 border border-slate-800 px-4 py-3 rounded-xl outline-none focus:border-blue-500 transition-colors"
+                        className="w-full bg-slate-950 border border-slate-800 px-4 py-3 rounded-xl outline-none focus:border-blue-500 transition-colors text-slate-200"
                         placeholder="Project or company description..."
+                        value={userContext}
+                        onChange={(e) => setUserContext(e.target.value)}
                       />
-                      <button className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl transition-all shadow-lg shadow-blue-600/20">
+                      <button 
+                        onClick={() => handleGenerate(selectedSkill)}
+                        disabled={!userContext.trim()}
+                        className="w-full bg-blue-600 hover:bg-blue-500 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-3 rounded-xl transition-all shadow-lg shadow-blue-600/20"
+                      >
                         Generate Strategy
                       </button>
+
+                      {generationResult && (
+                        <motion.div 
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          className="mt-6 p-6 bg-slate-950/50 border border-blue-500/30 rounded-2xl"
+                        >
+                          <h5 className="text-blue-400 font-bold mb-2 flex items-center gap-2">
+                            <Zap className="w-4 h-4" /> Result Concept
+                          </h5>
+                          <p className="text-slate-300 text-sm whitespace-pre-wrap leading-relaxed">
+                            {generationResult}
+                          </p>
+                        </motion.div>
+                      )}
                     </div>
                   </section>
                 </div>
