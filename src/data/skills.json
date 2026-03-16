@@ -1,0 +1,243 @@
+
+[
+  {
+    "id": "ab-test-setup",
+    "title": "A/B Test Setup",
+    "description": "Expertise in experimentation and A/B testing to design tests that produce statistically valid, actionable results.",
+    "category": "Testing & Experimentation",
+    "core_principles": [
+      "Start with a Hypothesis: Make specific predictions of outcomes based on reasoning or data.",
+      "Test One Thing: Only change a single variable per test to identify exactly what caused the result.",
+      "Statistical Rigor: Pre-determine sample sizes and commit to the methodology without 'peeking' early.",
+      "Measure What Matters: Tie primary metrics to business value and use guardrail metrics to prevent harm."
+    ]
+  },
+  {
+    "id": "ad-creative",
+    "title": "Ad Creative",
+    "description": "Expertise in generating, iterating, and scaling ad creative—headlines, descriptions, and visuals—for any paid advertising platform.",
+    "category": "Paid & Distribution",
+    "core_principles": [
+      "Define Your Angles: Establish distinct reasons to click, such as pain points, outcomes, or social proof.",
+      "Headlines That Click: Focus on specificity, benefits, and an active voice to capture attention.",
+      "Descriptions That Convert: Complement headlines with concrete proof points and proactive objection handling.",
+      "Respect Constraints: Strictly follow platform-specific character limits to avoid message truncation."
+    ]
+  },
+  {
+    "id": "ai-seo",
+    "title": "AI SEO",
+    "description": "Expertise in AI search optimization—making content discoverable, extractable, and citable by systems like ChatGPT, Gemini, and Perplexity.",
+    "category": "SEO & Discovery",
+    "core_principles": [
+      "Focus on Citations: Traditional SEO aims for ranking; AI SEO aims to be cited as a trusted source.",
+      "Three Pillars: Focus on Structure (extractable), Authority (trustworthy data), and Presence (being where AI looks).",
+      "Data-Driven Visibility: Including specific statistics and citing sources can boost AI visibility by up to 40%.",
+      "Structured Data: Use Schema (FAQ, Product, Article) to help AI systems correctly parse your information."
+    ]
+  },
+  {
+    "id": "analytics-tracking",
+    "title": "Analytics Tracking",
+    "description": "Expertise in analytics implementation and measurement, setting up tracking that provides actionable insights for marketing and product decisions.",
+    "category": "Measurement & Analytics",
+    "core_principles": [
+      "Track for Decisions: Every tracked event should inform a specific decision; prioritize quality over quantity.",
+      "Start with Questions: Identify what you need to know first, then work backwards to determine what to track.",
+      "Consistent Naming: Use clear Object-Action conventions and document your tracking plan meticulously.",
+      "Maintain Data Quality: Regularly validate implementations to monitor for potential data drift or breakage."
+    ]
+  },
+  {
+    "id": "churn-prevention",
+    "title": "Churn Prevention",
+    "description": "Expertise in SaaS retention and reducing both voluntary (cancellations) and involuntary (payment failures) churn.",
+    "category": "Retention",
+    "core_principles": [
+      "Match Offer to Reason: Personalize the 'save' offer based on the specific reason a customer is leaving.",
+      "Structured Cancel Flow: Use a multi-step flow including a survey, dynamic offer, and clear confirmation.",
+      "Recover Involuntary Churn: Implement smart payment retries, dunning emails, and card updater services.",
+      "Proactive Interventions: Use health scores to identify and assist 'at-risk' customers before they decide to cancel."
+    ]
+  },
+  {
+    "id": "cold-email",
+    "title": "Cold Email Writing",
+    "description": "Write B2B cold emails and follow-up sequences that sound like they come from a sharp, thoughtful, and human peer.",
+    "category": "Sales & RevOps",
+    "core_principles": [
+      "Peer-to-Peer Voice: Write like a colleague offering value rather than a vendor aggressively selling.",
+      "Ruthless Brevity: Every sentence must earn its place; lead with the reader's world, not your own.",
+      "Interest-Based CTAs: Use low-friction asks (e.g., 'worth exploring?') instead of hard meeting requests.",
+      "Personalized Connections: Ensure personalization naturally transitions into the specific problem you solve."
+    ]
+  },
+  {
+    "id": "competitor-pages",
+    "title": "Competitor & Alternative Pages",
+    "description": "Create competitor comparison or alternative pages to capture high-intent search traffic and position your product effectively.",
+    "category": "SEO & Discovery",
+    "core_principles": [
+      "Build Trust with Honesty: Acknowledge competitor strengths accurately to build long-term credibility.",
+      "Values-Led Comparison: Focus on why differences matter to the user rather than just checking feature boxes.",
+      "Help Them Decide: Clearly state who your product is for and who the competitor might be better for.",
+      "Scalable Structure: Use a modular approach to keep competitor information updated across all comparison pages."
+    ]
+  },
+  {
+    "id": "content-strategy",
+    "title": "Content Strategy",
+    "description": "Plan content that drives traffic, builds authority, and generates leads by balancing searchability and shareability.",
+    "category": "Content & Copy",
+    "core_principles": [
+      "Searchable vs. Shareable: Balance content that captures existing demand with content that creates new demand.",
+      "Lifecycle Mapping: Align content formats and keywords with every stage of the buyer's journey.",
+      "Content Clusters: Own 3-5 core pillars and build authority through interlinked, deep-dive content.",
+      "Research-Led Insight: Use customer calls, forums, and keyword data to guide your topic ideation."
+    ]
+  },
+  {
+    "id": "copy-editing",
+    "title": "Copy Editing",
+    "description": "Systematically improve existing marketing copy through focused editing passes without losing the core message or author's voice.",
+    "category": "Content & Copy",
+    "core_principles": [
+      "The Seven Sweeps: Systematically review for Clarity, Voice, 'So What', Proof, Specificity, Emotion, and Risk.",
+      "Preserve the Voice: Enhance the author's existing voice rather than forcing a total stylistic rewrite.",
+      "The 'So What' Test: Every claim must answer why the reader should care with a deeper, tangible benefit.",
+      "Ruthless Specificity: Replace vague adjectives with concrete numbers, timeframes, and outcomes."
+    ]
+  },
+  {
+    "id": "copywriting",
+    "title": "Copywriting",
+    "description": "Expert conversion copywriting for marketing pages (home, landing, pricing) to drive user action and conversions.",
+    "category": "Content & Copy",
+    "core_principles": [
+      "Clarity Over Cleverness: Always prioritize clear communication over being creative, 'punny', or vague.",
+      "Benefits Over Features: Focus on what the product enables for the user, not just its technical specifications.",
+      "Specificity Builds Credibility: Use concrete data points (e.g., 'save 12 hours/week') to build trust.",
+      "Mirror Customer Language: Use the exact words customers use in reviews and interviews to describe their needs."
+    ]
+  },
+  {
+    "id": "email-sequence",
+    "title": "Email Sequence Design",
+    "description": "Create automated email flows and lifecycle programs that nurture relationships and drive long-term conversions.",
+    "category": "Retention",
+    "core_principles": [
+      "One Email, One Job: Every email in a sequence must have exactly one primary goal and one main CTA.",
+      "Value Build-Up: Provide genuine utility and helpful resources before ever asking for a sale.",
+      "Relevance is King: Segment your audience to ensure every email is highly relevant to the recipient's stage.",
+      "Clear momentum: Every email should represent a logical and helpful next step in the user's journey."
+    ]
+  },
+  {
+    "id": "form-cro",
+    "title": "Form CRO",
+    "description": "Optimize non-registration forms (lead capture, contact, checkout) to minimize friction and maximize completion rates.",
+    "category": "Conversion Optimization",
+    "core_principles": [
+      "Field Minimization: Every extra field has a conversion 'cost'; remove all non-essential requirements.",
+      "Value > Effort: Ensure the perceived reward for completing the form is greater than the effort required.",
+      "Reduce Cognitive Load: Use single-column layouts, clear labels, and logical field groupings.",
+      "Build Commitment: Start with the easiest or most rewarding fields to build user momentum through the form."
+    ]
+  },
+  {
+    "id": "free-tool-strategy",
+    "title": "Free Tool Strategy",
+    "description": "Use 'Engineering as Marketing' by building free tools that generate leads, build SEO value, and establish authority.",
+    "category": "Growth Engineering",
+    "core_principles": [
+      "Solve Real Problems: The tool must provide genuine standalone value, not just be a marketing gimmick.",
+      "Product Adjacency: The tool should naturally lead users toward your core paid product solution.",
+      "Immediate Gratification: Provide value instantly with low friction, avoiding massive upfront signups.",
+      "Strategic Investment: Evaluate tools based on projected lead value versus the cost of build and maintenance."
+    ]
+  },
+  {
+    "id": "launch-strategy",
+    "title": "Launch Strategy",
+    "description": "Plan SaaS product and feature launches that build sustainable momentum and convert interest into active users.",
+    "category": "Strategy & Monetization",
+    "core_principles": [
+      "The ORB Framework: Leverage Owned (email), Rented (social), and Borrowed (partners) channels in coordination.",
+      "Momentum Phases: Use Alpha, Beta, and Early Access phases to build anticipation before a full public launch.",
+      "Iterative Launches: Treat every significant update or new feature as a fresh opportunity to capture attention.",
+      "Drive to Owned: Always aim to convert temporary social attention into permanent email relationships."
+    ]
+  },
+  {
+    "id": "lead-magnets",
+    "title": "Lead Magnets",
+    "description": "Create high-value resources that capture email addresses and solve specific audience pain points effectively.",
+    "category": "Content & Copy",
+    "core_principles": [
+      "Ultra-Specific Solution: Address one clear, painful problem rather than covering a broad, generic topic.",
+      "High Perceived Value: The content should feel valuable enough that users would consider paying for it.",
+      "Quick Consumability: Aim for value that can be fully realized by the user in under 10-30 minutes.",
+      "Product Education: Show the gap that exists in their current process and how your product bridges it."
+    ]
+  },
+  {
+    "id": "marketing-ideas",
+    "title": "Marketing Ideas for SaaS",
+    "description": "Find and implement the right marketing strategies for different business situations, stages, and resource constraints.",
+    "category": "Strategy & Monetization",
+    "core_principles": [
+      "Contextual Appropriateness: Evaluate every marketing tactic based on your specific audience and stage.",
+      "Multi-Channel Approach: Coordinate efforts across Owned, Rented, and Borrowed channels for maximum reach.",
+      "Success-Oriented Phasing: Match implementation speed and budget to the expected business outcomes.",
+      "Actionable Outputs: Ensure every idea translates into a concrete, measurable, and documented next step."
+    ]
+  },
+  {
+    "id": "marketing-psychology",
+    "title": "Marketing Psychology & Mental Models",
+    "description": "Apply psychological principles and mental models to understand and influence customer behavior ethically and effectively.",
+    "category": "Strategy & Monetization",
+    "core_principles": [
+      "Jobs to Be Done: Focus on the specific outcome or 'job' customers hire your product to achieve.",
+      "First Principles Thinking: Break problems down to fundamental truths instead of simply copying competitor trends.",
+      "Loss Aversion: Leverage the fact that people tend to value avoiding a loss more than achieving an equivalent gain.",
+      "Social Proof: Use customer counts, testimonials, and case studies to signal quality and reduce perceived risk."
+    ]
+  },
+  {
+    "id": "onboarding-cro",
+    "title": "Onboarding CRO",
+    "description": "Optimize user activation and the first-run experience to help users reach their 'aha moment' as fast as possible.",
+    "category": "Conversion Optimization",
+    "core_principles": [
+      "Minimize Time-to-Value: Eliminate every friction point between signup and the user's first success.",
+      "Goal-Oriented Sessions: Focus the very first session on achieving a single, meaningful successful outcome.",
+      "Active Learning: Use interactive 'doing' walkthroughs instead of passive 'showing' tutorials.",
+      "Progress Momentum: Use progress bars and celebration moments to keep users motivated and moving forward."
+    ]
+  },
+  {
+    "id": "page-cro",
+    "title": "Page Conversion Rate Optimization (CRO)",
+    "description": "Analyze and optimize marketing pages to improve the percentage of visitors who take a desired action.",
+    "category": "Conversion Optimization",
+    "core_principles": [
+      "5-Second Clarity: Ensure users understand the value proposition and the next step within 5 seconds of landing.",
+      "Strategic Trust Building: Place social proof and trust signals (logos, reviews) near key decision points.",
+      "Proactive Objection Handling: Address common concerns like price, security, and risk directly in the copy.",
+      "Friction Removal: Simplify navigation and forms to make the path to conversion as obvious as possible."
+    ]
+  },
+  {
+    "id": "paid-ads",
+    "title": "Paid Ads",
+    "description": "Create, optimize, and scale paid advertising campaigns that drive efficient customer acquisition across top platforms.",
+    "category": "Paid & Distribution",
+    "core_principles": [
+      "Strategic Platform Choice: Use search ads for existing intent and social ads for demand generation.",
+      "Account Hierarchy: Maintain a clear structure (Campaign > Ad Set > Ad) with consistent naming conventions.",
+      "Testing-Scaling Balance: Use a 70/30 split between proven winning campaigns and experimental testing.",
+      "Funnel-Based Retargeting: Personalize retargeting messages based on previous high-intent user interactions."
+    ]
+  }
+]
