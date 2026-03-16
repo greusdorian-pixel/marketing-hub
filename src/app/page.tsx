@@ -21,17 +21,37 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedSkill, setSelectedSkill] = useState<Skill | null>(null);
   const [userContext, setUserContext] = useState("");
-  const [generationResult, setGenerationResult] = useState<string | null>(null);
+  const [generationResult, setGenerationResult] = useState<any | null>(null);
+  const [isGenerating, setIsGenerating] = useState(false);
 
-  const handleGenerate = (skill: Skill) => {
+  const handleGenerate = async (skill: Skill) => {
     if (!userContext.trim()) return;
     
-    // Simulate generation logic based on skill principles
-    const result = `Using the ${skill.title} framework for "${userContext}":\n\n` + 
-      `Priority 1: ${skill.core_principles[0].split(':')[0]}\n` +
-      `Recommended Action: Focus on implementing ${skill.core_principles[0].split(':')[1] || "best practices"} to maximize immediate impact.`;
+    setIsGenerating(true);
+    setGenerationResult(null);
+
+    // Simulate analysis delay
+    await new Promise(resolve => setTimeout(resolve, 1500));
+
+    const result = {
+      summary: `Comprehensive ${skill.title} Strategy for: ${userContext}`,
+      roadmap: skill.core_principles.map((p, i) => {
+        const [title, detail] = p.split(':');
+        return {
+          phase: `Phase ${i + 1}`,
+          title: title.trim(),
+          action: detail?.trim() || "Implement industry standard best practices."
+        };
+      }),
+      nextSteps: [
+        "Audit current implementation based on these principles.",
+        "Set up baseline metrics for tracking success.",
+        "Execute Phase 1 implementation as a pilot test."
+      ]
+    };
     
     setGenerationResult(result);
+    setIsGenerating(false);
   };
 
   const filteredSkills = useMemo(() => {
@@ -176,24 +196,65 @@ export default function Home() {
                       />
                       <button 
                         onClick={() => handleGenerate(selectedSkill)}
-                        disabled={!userContext.trim()}
-                        className="w-full bg-blue-600 hover:bg-blue-500 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-3 rounded-xl transition-all shadow-lg shadow-blue-600/20"
+                        disabled={!userContext.trim() || isGenerating}
+                        className="w-full bg-blue-600 hover:bg-blue-500 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-3 rounded-xl transition-all shadow-lg shadow-blue-600/20 flex items-center justify-center gap-2"
                       >
-                        Generate Strategy
+                        {isGenerating ? (
+                          <>
+                            <motion.div 
+                              animate={{ rotate: 360 }}
+                              transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+                            >
+                              <Zap className="w-4 h-4" />
+                            </motion.div>
+                            Analyzing Context...
+                          </>
+                        ) : (
+                          "Generate Full Strategy"
+                        )}
                       </button>
 
                       {generationResult && (
                         <motion.div 
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          className="mt-6 p-6 bg-slate-950/50 border border-blue-500/30 rounded-2xl"
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="mt-6 space-y-6"
                         >
-                          <h5 className="text-blue-400 font-bold mb-2 flex items-center gap-2">
-                            <Zap className="w-4 h-4" /> Result Concept
-                          </h5>
-                          <p className="text-slate-300 text-sm whitespace-pre-wrap leading-relaxed">
-                            {generationResult}
-                          </p>
+                          <div className="p-6 bg-slate-950/50 border border-blue-500/30 rounded-2xl">
+                            <h5 className="text-blue-400 font-bold mb-4 flex items-center gap-2">
+                              <Zap className="w-4 h-4" /> Execution Roadmap
+                            </h5>
+                            
+                            <div className="space-y-4">
+                              {generationResult.roadmap.map((step: any, i: number) => (
+                                <div key={i} className="flex gap-4">
+                                  <div className="flex flex-col items-center">
+                                    <div className="w-2 h-2 rounded-full bg-blue-500 mt-2" />
+                                    {i !== generationResult.roadmap.length - 1 && (
+                                      <div className="w-px h-full bg-slate-800 my-1" />
+                                    )}
+                                  </div>
+                                  <div>
+                                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-tighter">{step.phase}</p>
+                                    <p className="text-sm font-bold text-slate-200">{step.title}</p>
+                                    <p className="text-xs text-slate-400 mt-1 leading-relaxed">{step.action}</p>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+
+                          <div className="p-6 bg-blue-500/5 border border-blue-500/20 rounded-2xl">
+                            <h5 className="text-slate-200 font-bold mb-3 text-sm">Critical Next Steps</h5>
+                            <ul className="space-y-2">
+                              {generationResult.nextSteps.map((step: string, i: number) => (
+                                <li key={i} className="flex items-center gap-2 text-xs text-slate-400">
+                                  <div className="w-1 h-1 rounded-full bg-blue-400" />
+                                  {step}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
                         </motion.div>
                       )}
                     </div>
